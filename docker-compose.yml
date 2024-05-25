@@ -1,0 +1,8 @@
+services:
+  55gms:
+    build: .
+    working_dir: /home/node/app
+    container_name: 55gms
+    restart: always
+    ports:
+      - 8080:8080
