@@ -3,12 +3,16 @@ const input = document.querySelector("input");
 
 document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", async (event) => {
+    console.log('going to',event);
+
     event.preventDefault();
+
     window.navigator.serviceWorker
       .register("/assets/uv/sw.js", {
         scope: __uv$config.prefix,
       })
       .then(() => {
+        debugger;
         let url = input.value.trim();
         if (!isUrl(url)) url = "https://www.google.com/search?q=" + url;
         else if (!(url.startsWith("https://") || url.startsWith("http://")))

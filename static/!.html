@@ -39,12 +39,6 @@
     <button id="reload-button" class="navbtn navbtn3" title="Reload the Page">
       <i class="fa-solid fa-rotate-right"></i>
     </button>
-    <button
-      id="ad-button"
-      class="navbtn navbtn4"
-      title="Skip YT Ad"
-      onclick="skipAd()"
-    >
       <i class="fa-solid fa-film"></i>
     </button>
     <button
@@ -60,6 +54,7 @@
     fetch("/assets/json/nowgg.json")
       .then((response) => response.json())
       .then((data) => {
+        debugger;
         const iframeIdValue = data;
         if (iframeIdValue.includes(sessionStorage.getItem("encodedUrl"))) {
           const nowJsScript = document.createElement("script");
@@ -113,42 +108,7 @@
         erudaDocument.head.appendChild(script);
       }
     }
-    function skipAd() {
-      const iframe = document.getElementById("iframeid");
-      if (!iframe) return;
 
-      while (
-        iframe.contentDocument.getElementsByClassName("video-ads")[0]
-          .innerHTML !== ""
-      ) {
-        var bannerClosed = false;
-
-        for (
-          var i = 0;
-          i <
-          iframe.contentDocument.getElementsByClassName(
-            "ytp-ad-overlay-close-button"
-          ).length;
-          i++
-        ) {
-          iframe.contentDocument
-            .getElementsByClassName("ytp-ad-overlay-close-button")
-            [i].click();
-          bannerClosed = true;
-        }
-
-        if (!bannerClosed) {
-          var mainVideo =
-            iframe.contentDocument.getElementsByClassName(
-              "html5-main-video"
-            )[0];
-          mainVideo.currentTime = mainVideo.duration;
-          iframe.contentDocument
-            .getElementsByClassName("ytp-ad-skip-button")[0]
-            .click();
-        }
-      }
-    }
     window.addEventListener("load", function () {
       let encodedUrl = sessionStorage.getItem("encodedUrl");
       encodedUrl = "/assets/uv/service/" + encodedUrl;

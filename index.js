@@ -44,7 +44,7 @@ async function fetchDataFromGithub(
   res,
   next,
   baseUrl,
-  secondaryUrl = null,
+  secondaryUrl = null
 ) {
   function isAFile(urlString) {
     return urlString.trim().split("/").pop().length !== 0;
@@ -102,6 +102,7 @@ server.on("upgrade", (req, socket, head) => {
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "static/404.html"), function (err) {
     if (err) {
+      console.log(err);
       res.status(404).send(err);
     }
   });

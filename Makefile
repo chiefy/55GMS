@@ -5,11 +5,13 @@ DOCKER_TAG?=latest
 build-docker:
 	@docker build --no-cache -t $(DOCKER_IMAGE):$(DOCKER_TAG) .
 
+.PHONY: run-local
+run-local:
+	@node ./index.js
+
 .PHONY: run
 run:
 	@docker-compose up -d
-	@sleep 4000
-	@open localhost:8080
 
 .PHONY: stop
 stop:
