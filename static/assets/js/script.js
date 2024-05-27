@@ -2,7 +2,7 @@ function script(text) {
   console.log(
     "%cScript Injection",
     "color: cyan; font-weight: 600; background: black; padding: 0 5px; border-radius: 5px",
-    text
+    text,
   );
 }
 
